@@ -6,17 +6,17 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 18:10:54 by nrossel           #+#    #+#             */
-/*   Updated: 2023/02/21 13:37:57 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:06:10 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/libft.h"
 
-t_dlist	*ft_dlst_new(void)
+t_dlist	*ft_dlst_new(t_list **trash_lst)
 {
 	t_dlist	*new_list;
 
-	new_list = malloc(sizeof(t_dlist));
+	new_list = my_malloc(0, sizeof(t_dlist), trash_lst);
 	if (!new_list)
 		return (NULL);
 	new_list->head = NULL;

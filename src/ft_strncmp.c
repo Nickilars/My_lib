@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 10:06:58 by nrossel           #+#    #+#             */
-/*   Updated: 2022/12/15 19:28:29 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/05/10 11:41:07 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,13 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		return (p1[i] - p2[i]);
 	return (0);
 }
+
+/*int	main(int ac, char **av)
+{
+	int	res;
+
+	(void) ac;
+	res = ft_strncmp(av[1], av[2], 1);
+	printf("%d\n", res);
+	return (0);
+}*/

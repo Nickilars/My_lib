@@ -6,14 +6,14 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 14:47:27 by nrossel           #+#    #+#             */
-/*   Updated: 2023/02/17 09:03:45 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/05/23 14:49:15 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 // #include <stdio.h>
 
-int	ft_btoi(int binaire)
+int	ft_btoi(int binaire, t_list **trash_lst)
 {
 	int		d;
 	char	*b;
@@ -22,7 +22,7 @@ int	ft_btoi(int binaire)
 
 	d = 0;
 	i = 0;
-	b = ft_itoa(binaire);
+	b = ft_itoa(binaire, trash_lst);
 	power = ft_strlen(b) - 1;
 	while (power >= 0)
 	{

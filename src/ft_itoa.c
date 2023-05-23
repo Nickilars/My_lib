@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 11:04:26 by nrossel           #+#    #+#             */
-/*   Updated: 2022/12/15 19:25:56 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/05/23 13:06:47 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char	*insert_nb(char *str, long long int n, int len)
 }
 /*-----------------------------------------------*/
 
-char	*ft_itoa(int n)
+char	*ft_itoa(int n, t_list **trash)
 {
 	char			*str;
 	int				len;
@@ -62,7 +62,7 @@ char	*ft_itoa(int n)
 	len = str_len(nb);
 	if (nb < 0)
 		len = len + 1;
-	str = malloc((len + 1) * sizeof(char));
+	str = my_malloc((len + 1), sizeof(char), trash);
 	if (!str)
 		return (NULL);
 	str = insert_nb(str, nb, len);

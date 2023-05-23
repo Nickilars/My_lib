@@ -6,13 +6,13 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 10:02:02 by nrossel           #+#    #+#             */
-/*   Updated: 2022/12/15 19:27:50 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/05/23 13:13:52 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2, t_list **trash)
 {
 	size_t		len_max;
 	size_t		i;
@@ -20,24 +20,22 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char		*str;
 
 	len_max = ((ft_strlen(s1) + ft_strlen(s2)) + 1);
-	str = ft_calloc(len_max, sizeof(char));
+	str = my_malloc(len_max, sizeof(char), trash);
 	if (!str)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (s1[i] && j < len_max)
+	while (s1[i] && i < len_max)
 	{
-		str[j] = s1[i];
+		str[i] = s1[i];
 		i++;
+	}
+	while (s2[j] && j < len_max)
+	{
+		str[i + j] = s2[j];
 		j++;
 	}
-	i = 0;
-	while (s2[i] && j < len_max)
-	{
-		str[j] = s2[i];
-		i++;
-		j++;
-	}
+	str[i + j] = 0;
 	return (str);
 }
 

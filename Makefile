@@ -1,19 +1,11 @@
 CC		= gcc
-
 CFLAGS	= -Wall -Wextra -Werror -g -o1
-
 SRC_PATH	= ./src/
-
 SORT_PATH	=./src/tri/
-
 LIST_PATH	= ./src/list/simpl_list/
-
 DLIST_PATH	= ./src/list/doubl_list/
-
 CLIST_PATH	=./src/list/circular_list/
-
 GNL_SRC_PATH	= ./src/gnl/
-
 PRINTF_SRC_PATH	= ./src/ft_printf/
 
 SRC	= ft_isalpha.c \
@@ -63,7 +55,9 @@ SRC	= ft_isalpha.c \
 			ft_striteri.c \
 			ft_free.c \
 			ft_swap.c \
-			ft_exit.c
+			ft_exit.c \
+			ft_strcmp.c \
+			my_malloc.c
 
 SORT_SRC		= bubblesort.c \
 				quicksort.c
@@ -98,12 +92,23 @@ SRCS_PRINTF	= ft_printf.c \
 				ft_print_s.c \
 				ft_print_u.c
 
-SRCS	= $(addprefix $(SRC_PATH)/,$(SRC)) $(addprefix $(LIST_PATH)/,$(SRC_SLIST)) $(addprefix $(DLIST_PATH)/,$(SRC_DLIST)) $(addprefix $(GNL_SRC_PATH)/,$(SRCS_GNL)) $(addprefix $(PRINTF_SRC_PATH)/,$(SRCS_PRINTF)) $(addprefix $(SORT_PATH)/,$(SORT_SRC))
+### COLORS ###
+_BOLD        = \e[1m
+_UNDERLINE   = \e[4m
+_BLACK       = \e[30m
+_RED         = \e[31m
+_GREEN       = \e[32m
+_YELLOW      = \e[33m
+_BLUE        = \e[34m
+_VIOLET      = \e[35m
+_CYAN        = \e[36m
+_END         = \e[0m
 
+SRCS	= $(addprefix $(SRC_PATH)/,$(SRC)) $(addprefix $(LIST_PATH)/,$(SRC_SLIST)) $(addprefix $(DLIST_PATH)/,$(SRC_DLIST)) $(addprefix $(GNL_SRC_PATH)/,$(SRCS_GNL)) $(addprefix $(PRINTF_SRC_PATH)/,$(SRCS_PRINTF)) $(addprefix $(SORT_PATH)/,$(SORT_SRC))
 OBJS	= $(SRCS:.c=.o)
 
 %.o: %.c
-# @printf "Libft object :		$(_BLUE)%-33.33s\r$(_END)\n" $@
+			@printf "Libft object :			$(_BLUE)%-33.33s\r$(_END)\n" $@
 			@${CC} ${CFLAGS} -c $< -o $@
 
 
@@ -111,23 +116,11 @@ NAME	= libft.a
 
 RM		= rm -f
 
-### COLORS ###
-NOC         = \033[0m
-BOLD        = \033[1m
-UNDERLINE   = \033[4m
-BLACK       = \033[1;30m
-RED         = \033[1;31m
-GREEN       = \033[1;32m
-YELLOW      = \033[1;33m
-BLUE        = \033[1;34m
-VIOLET      = \033[1;35m
-CYAN        = \033[1;36m
-WHITE       = \033[1;37m
-
 all :	$(NAME)
 
 $(NAME) : $(OBJS)
 		@ar -rs $(NAME) $(OBJS)
+		@$(RM) $(OBJS)
 
 re : fclean $(NAME)
 
@@ -135,6 +128,6 @@ clean :
 		$(RM) *.o $(SRC_PATH)*.o $(GNL_SRC_FOLDER)*.o $(PRINTF_SRC_FOLDER)*.o
 
 fclean : clean
-		$(RM) $(NAME)
+		@$(RM) $(NAME)
 
 .PHONY: all re clean fclean

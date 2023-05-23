@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:05:04 by nrossel           #+#    #+#             */
-/*   Updated: 2023/02/17 10:06:16 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/05/23 14:46:34 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	isset(char c, char const *set)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set, t_list **trash_lst)
 {
 	size_t	i;
 	size_t	j;
@@ -45,7 +45,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		j--;
 	}
 	strlen = ft_strlen(s1) - (i + k);
-	str = ft_substr(s1, i, strlen);
+	str = ft_substr(s1, i, strlen, trash_lst);
 	if (!str)
 		return (NULL);
 	return (str);

@@ -6,7 +6,7 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 10:29:27 by nrossel           #+#    #+#             */
-/*   Updated: 2022/12/30 09:08:53 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/05/23 14:45:37 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,26 @@ static int	nb_char(const char *str, char c)
 	return (i);
 }
 
-static char	*word_cpy(const char *str, int start, int finish)
+static char	*word_cpy(const char *str, int start, int fin, t_list **lst)
 {
 	char	*word;
 	int		i;
 
 	i = 0;
-	word = malloc((finish - start + 1) * sizeof(char));
-	while (start < finish)
+	word = my_malloc((fin - start + 1), sizeof(char), lst);
+	while (start < fin)
 		word[i++] = str[start++];
 	word[i] = '\0';
 	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+static char	**new_split(char const *s, char c, t_list **trash)
 {
 	size_t	i;
 	size_t	j;
 	int		index;
 	char	**split;
 
-	if (!s)
-		return (0);
 	split = malloc((nb_char(s, c) + 1) * sizeof(char *));
 	if (!split)
 		return (NULL);
@@ -67,10 +65,23 @@ char	**ft_split(char const *s, char c)
 			index = i;
 		else if ((s[i] == c || i == ft_strlen(s)) && index >= 0)
 		{
-			split[j++] = word_cpy(s, index, i);
+			split[j++] = word_cpy(s, index, i, trash);
 			index = -1;
 		}
 	}
 	split[j] = 0;
+	return (split);
+}
+
+char	**ft_split(char const *s, char c, t_list **trash)
+{
+	char	**split;
+	t_list	*new_node;
+
+	if (!*s)
+		return (0);
+	split = new_split(s, c, trash);
+	new_node = ft_lstnew(&split, trash);
+	ft_lstadd_back(trash, new_node);
 	return (split);
 }
