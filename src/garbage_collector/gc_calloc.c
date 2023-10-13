@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   gc_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 11:21:49 by nrossel           #+#    #+#             */
-/*   Updated: 2023/10/13 14:09:49 by nrossel          ###   ########.fr       */
+/*   Created: 2022/10/31 12:55:37 by nrossel           #+#    #+#             */
+/*   Updated: 2023/10/13 14:50:41 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../../include/libft.h"
 
-char	*ft_strdup(const char *s1)
+void	*gc_calloc(size_t size, size_t type, t_list **trash)
 {
-	int		i;
-	int		len;
-	char	*s_cpy;
+	char	*str;
 
-	i = 0;
-	len = ft_strlen(s1);
-	s_cpy = malloc((len + 1) * sizeof(char));
-	if (!s_cpy)
-		return (0);
-	while (i <= len && s1[i])
-	{
-		s_cpy[i] = s1[i];
-		i++;
-	}
-	s_cpy[i] = 0;
-	return (s_cpy);
+	str = my_malloc(size, type, trash);
+	if (!str)
+		return (str);
+	ft_bzero(str, type * size);
+	return (str);
 }

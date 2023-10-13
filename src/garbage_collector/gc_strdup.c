@@ -1,46 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_btoi.c                                          :+:      :+:    :+:   */
+/*   gc_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 14:47:27 by nrossel           #+#    #+#             */
-/*   Updated: 2023/10/13 14:31:24 by nrossel          ###   ########.fr       */
+/*   Created: 2022/10/31 11:21:49 by nrossel           #+#    #+#             */
+/*   Updated: 2023/10/13 14:26:31 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
-// #include <stdio.h>
+#include "../../include/libft.h"
 
-int	ft_btoi(int binaire)
+char	*gc_strdup(const char *s1, t_list **trash)
 {
-	int		d;
-	char	*b;
-	int		power;
 	int		i;
+	int		len;
+	char	*s_cpy;
 
-	d = 0;
 	i = 0;
-	b = ft_itoa(binaire);
-	power = ft_strlen(b) - 1;
-	while (power >= 0)
+	len = ft_strlen(s1);
+	s_cpy = my_malloc(len + 1, sizeof(char), trash);
+	if (!s_cpy)
+		return (0);
+	while (i <= len && s1[i])
 	{
-		if (b[power] == '1')
-		{
-			d += ft_power(2, i);
-		}
-		power--;
+		s_cpy[i] = s1[i];
 		i++;
 	}
-	free(b);
-	return (d);
+	s_cpy[i] = 0;
+	return (s_cpy);
 }
-
-// int main(int ac, char **av)
-// {
-	// (void) ac;
-	// int b = atoi(av[1]);
-	// int decimal = ft_btoi(b);
-	// printf("%d", decimal);
-// }

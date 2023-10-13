@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   gc_dlst_newcontent.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 11:21:49 by nrossel           #+#    #+#             */
-/*   Updated: 2023/10/13 14:09:49 by nrossel          ###   ########.fr       */
+/*   Created: 2023/02/14 10:20:14 by nrossel           #+#    #+#             */
+/*   Updated: 2023/10/13 14:26:13 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../../../include/libft.h"
 
-char	*ft_strdup(const char *s1)
+t_node	*gc_dlst_newcontent(void *data)
 {
-	int		i;
-	int		len;
-	char	*s_cpy;
+	t_node	*new_node;
+	int		*data_mllc;
 
-	i = 0;
-	len = ft_strlen(s1);
-	s_cpy = malloc((len + 1) * sizeof(char));
-	if (!s_cpy)
+	new_node = malloc(0 * sizeof(t_node));
+	data_mllc = malloc(0 * sizeof(void));
+	if (!new_node || !data_mllc)
 		return (0);
-	while (i <= len && s1[i])
-	{
-		s_cpy[i] = s1[i];
-		i++;
-	}
-	s_cpy[i] = 0;
-	return (s_cpy);
+	data_mllc = data;
+	new_node->data = data_mllc;
+	new_node->next = NULL;
+	new_node->prev = NULL;
+	return (new_node);
 }

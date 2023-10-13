@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   gc_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 13:33:08 by nrossel           #+#    #+#             */
-/*   Updated: 2023/10/13 14:44:08 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/10/13 14:50:52 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../../include/libft.h"
 
-char	*ft_substr(char const *s, size_t start, size_t len)
+char	*gc_substr(char const *s, size_t start, size_t len, t_list **trash)
 {
 	size_t			i;
 	char			*str;
 
 	if (!s)
-		return (NULL);
+		return (0);
 	if (start > ft_strlen(s))
-		return (ft_calloc(1, 1));
+		return (gc_calloc(1, 1, trash));
 	if (len > (ft_strlen(s + start)))
 		len = (ft_strlen(s + start));
-	str = ft_calloc(len + 1, sizeof(char));
+	str = gc_calloc(len + 1, sizeof(char), trash);
 	if (!str)
-		return (NULL);
+		return (0);
 	i = 0;
 	while (i < len)
 	{

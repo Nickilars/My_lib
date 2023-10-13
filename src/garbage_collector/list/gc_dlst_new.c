@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   gc_dlst_new.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/31 11:21:49 by nrossel           #+#    #+#             */
-/*   Updated: 2023/10/13 14:09:49 by nrossel          ###   ########.fr       */
+/*   Created: 2023/02/13 18:10:54 by nrossel           #+#    #+#             */
+/*   Updated: 2023/10/13 14:26:06 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../../../include/libft.h"
 
-char	*ft_strdup(const char *s1)
+t_dlist	*gc_dlst_new(t_list **trash_lst)
 {
-	int		i;
-	int		len;
-	char	*s_cpy;
+	t_dlist	*new_list;
 
-	i = 0;
-	len = ft_strlen(s1);
-	s_cpy = malloc((len + 1) * sizeof(char));
-	if (!s_cpy)
+	new_list = my_malloc(0, sizeof(t_dlist), trash_lst);
+	if (!new_list)
 		return (0);
-	while (i <= len && s1[i])
-	{
-		s_cpy[i] = s1[i];
-		i++;
-	}
-	s_cpy[i] = 0;
-	return (s_cpy);
+	new_list->head = NULL;
+	new_list->tail = NULL;
+	new_list->len = 0;
+	return (new_list);
 }

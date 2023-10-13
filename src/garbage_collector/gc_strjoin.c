@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   gc_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/01 13:33:08 by nrossel           #+#    #+#             */
-/*   Updated: 2023/10/13 14:44:08 by nrossel          ###   ########.fr       */
+/*   Created: 2022/11/02 10:02:02 by nrossel           #+#    #+#             */
+/*   Updated: 2023/10/13 14:26:35 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../../include/libft.h"
 
-char	*ft_substr(char const *s, size_t start, size_t len)
+char	*gc_strjoin(char const *s1, char const *s2, t_list **trash)
 {
-	size_t			i;
-	char			*str;
+	size_t		len_max;
+	size_t		i;
+	size_t		j;
+	char		*str;
 
-	if (!s)
-		return (NULL);
-	if (start > ft_strlen(s))
-		return (ft_calloc(1, 1));
-	if (len > (ft_strlen(s + start)))
-		len = (ft_strlen(s + start));
-	str = ft_calloc(len + 1, sizeof(char));
+	len_max = ((ft_strlen(s1) + ft_strlen(s2)) + 1);
+	str = my_malloc(len_max, sizeof(char), trash);
 	if (!str)
-		return (NULL);
+		return (0);
 	i = 0;
-	while (i < len)
+	j = 0;
+	while (s1[i] && i < len_max)
 	{
-		str[i] = s[start + i];
+		str[i] = s1[i];
 		i++;
 	}
+	while (s2[j] && j < len_max)
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
+	str[i + j] = 0;
 	return (str);
 }
 
@@ -39,10 +43,9 @@ char	*ft_substr(char const *s, size_t start, size_t len)
 {
 	(void) argc;
 	{
-		char *str = argv[1];
-		unsigned int i = ft_atoi(argv[2]);
-		unsigned long long len = ft_atoi(argv[3]);
-		char *ret = ft_substr(str, i, len);
+		char *str1 = argv[1];
+		char *str2 = argv[2];
+		char *ret = ft_strjoin(str1, str2);
 		printf("%s", ret);
 	}
 }*/

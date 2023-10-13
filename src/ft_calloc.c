@@ -6,17 +6,17 @@
 /*   By: nrossel <nrossel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 12:55:37 by nrossel           #+#    #+#             */
-/*   Updated: 2023/05/23 13:05:56 by nrossel          ###   ########.fr       */
+/*   Updated: 2023/10/13 14:13:49 by nrossel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-void	*ft_calloc(size_t size, size_t type, t_list **trash)
+void	*ft_calloc(size_t size, size_t type)
 {
 	char	*str;
 
-	str = my_malloc(size, type, trash);
+	str = malloc(size * type);
 	if (!str)
 		return (str);
 	ft_bzero(str, type * size);
